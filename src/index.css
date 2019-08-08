@@ -1,0 +1,56 @@
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.form {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.input {
+  width: 40%;
+  height: 35px;
+  border: 1px solid darkgray;
+}
+
+input[type="text"] {
+  font-family: "Raleway", sans-serif;
+
+  font-size: 22px;
+  color: #222326;
+}
+
+input:focus {
+  outline: none;
+  border: 1px solid rgb(48, 46, 46);
+}
+
+.btn {
+  padding: 5px 50px 5px 50px;
+  background-color: #1db954;
+  border-radius: 500px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  color: white;
+  font-size: 25px;
+  cursor: pointer
+}
+
+.btn:hover {
+  background-color: #40da75;
+}
+
+.container {
+  text-align: center;
+}
+
+.cover {
+  margin-top: 20px;
+}
+
+li {
+  text-decoration: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
