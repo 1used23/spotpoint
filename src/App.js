@@ -39,7 +39,7 @@ function App() {
           onChange={e => { setQuery(e.target.value) }}
           placeholder="Search for..." className="input" />
 
-        <a className="btn" onClick={e => { search(query) }}>Go!</a>
+        <a className="btn" onClick={e => { search(query) }} href={'/test/123456'} >Go!</a>
       </div>
 
       {artist && <ArtistInfo info={artist} />}
@@ -53,7 +53,10 @@ function App() {
               инфу о треке
       */}
       <Router>
-        <Route path="/test" component={TestRout} />
+
+        <Link to="/test">...</Link>
+        <Route path="/test/:id" component={TestRout} />
+
       </Router>
 
 
