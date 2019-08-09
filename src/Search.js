@@ -11,7 +11,7 @@ export default function Search(props) {
     const BASE_URL = "https://api.spotify.com/v1/search?";
     const FETCH_URL = BASE_URL + "q=" + artist + "&type=artist&limit=1";
     const accessToken =
-      "BQBmu6hO_DALW5V_wBxRannNH89eT2wDXJnz49HLqIiJeQBkvbW2T-ph6YAtAYTa6t4Gm3nyHxzTkqUSnvDwskW6AmVzWg74yO2ETXzcGCvDSWzU1guhhGBdiraudvmIn6sZwPNJ5uSbfF9aG2yFDUiNQlzVEvL2LzPGu5ZGZLFs2NSxqOOrjXGTzOwWwzG-XBJR3ik1lxr2kqphg7P6bXAOGOPB0oC6JcSI10oG7lYY-CMpnpxgog7ffWGC0Fo1SZ_Yx9vzO94h_CuRz5j7tbpGOtqt1OOH";
+      "BQBbU7uAeBJRUcurvKCFFLiddV0Am_sqXoQKk1MHpDaLk-1KTpHIaG7bTR-76QP7BggMO2r9LuyShS0vDTeoGH0x-py81allVLyMYG23yFMGtak1S2GMz3RRTxy3kreVsKEXzrrGDxg0BiAsZWB9bcP2_yHhBiVCHKCKufBRkaG_UitQhzSM";
 
     const myOptions = {
       method: "GET",

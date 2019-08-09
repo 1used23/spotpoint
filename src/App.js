@@ -25,6 +25,8 @@ function App() {
       {/*   похожих артистов?
             альбомы
               треки с альбомов
+
+            вынести токен в глобал
       */}
       <Router>
         <Route path="/search/:query" component={Search} />
