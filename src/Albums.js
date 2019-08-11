@@ -42,7 +42,8 @@ export default function Albums(props) {
 
   /*     albumsArr.push({
         name: album.name,
-        cover: album.images[0].
+        cover: album.images[0],
+        id: 
       }])
    */
   return (
@@ -51,14 +52,12 @@ export default function Albums(props) {
         {albumsArr && albumsArr.map((album, index) => <li key={album}>
           <div>{album}</div>
           <img
-            height="400"
-            width="400"
             src={coversArr[index]}
           />
           <Tracklist id={idArr[index]} />
         </li>)}
       </ul>
-      <br/>>
+      <br />>
     </div>
   );
 }

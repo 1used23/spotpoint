@@ -6,11 +6,10 @@ import token from './token'
 export default function Search(props) {
   const [info, setInfo] = useState();
 
-  const [artist, setArtist] = useState(props.match.params.query);
-
   useEffect(() => {
-    const BASE_URL = "https://api.spotify.com/v1/search?";
-    const FETCH_URL = BASE_URL + "q=" + artist + "&type=artist&limit=1";
+    const FETCH_URL = `https://api.spotify.com/v1/search?q=${
+      props.match.params.query
+      }&type=artist&limit=1`;
 
     const myOptions = {
       method: "GET",
@@ -35,8 +34,6 @@ export default function Search(props) {
     <div>
       <img
         src={info && info.images[0].url}
-        height="400"
-        width="400"
         className="photo"
       />
 

@@ -23,11 +23,7 @@ function App() {
         </a>
       </div>
 
-      {/*   похожих артистов?
-            альбомы
-              треки с альбомов
-
-      */}
+      {/*   похожих артистов?    */}
       <Router>
         <Route path="/search/:query" component={Search} />
         <Route path="/albums/:id" component={Albums} />
