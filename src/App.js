@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Search from "./Search";
+import Albums from './Albums'
 
 function App() {
   const [query, setQuery] = useState("");
@@ -26,10 +27,11 @@ function App() {
             альбомы
               треки с альбомов
 
-            вынести токен в глобал
       */}
       <Router>
         <Route path="/search/:query" component={Search} />
+        <Route path="/albums/:id" component={Albums} />
+
       </Router>
     </div>
   );

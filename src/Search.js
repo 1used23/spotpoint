@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Albums from "./Albums";
+import token from './token'
 
 export default function Search(props) {
   const [info, setInfo] = useState();
@@ -10,13 +11,11 @@ export default function Search(props) {
   useEffect(() => {
     const BASE_URL = "https://api.spotify.com/v1/search?";
     const FETCH_URL = BASE_URL + "q=" + artist + "&type=artist&limit=1";
-    const accessToken =
-      "BQBbU7uAeBJRUcurvKCFFLiddV0Am_sqXoQKk1MHpDaLk-1KTpHIaG7bTR-76QP7BggMO2r9LuyShS0vDTeoGH0x-py81allVLyMYG23yFMGtak1S2GMz3RRTxy3kreVsKEXzrrGDxg0BiAsZWB9bcP2_yHhBiVCHKCKufBRkaG_UitQhzSM";
 
     const myOptions = {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + accessToken
+        Authorization: "Bearer " + token
       },
       mode: "cors",
       cache: "no-cache"
@@ -31,7 +30,6 @@ export default function Search(props) {
   }, []);
 
   const idArtist = info && info.id;
-  console.log(idArtist);
 
   return (
     <div>
@@ -39,7 +37,7 @@ export default function Search(props) {
         src={info && info.images[0].url}
         height="400"
         width="400"
-        className="cover"
+        className="photo"
       />
 
       <a href={info && info.external_urls.spotify}>

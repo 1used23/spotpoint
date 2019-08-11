@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from "react";
+import token from './token';
+import Tracklist from './Tracklist';
 
 export default function Albums(props) {
   const [albums, setAlbums] = useState();
   useEffect(() => {
     const FETCH_URL = `https://api.spotify.com/v1/artists/${
       props.match.params.id
-    }/albums`;
-    console.log(FETCH_URL);
-
-    const accessToken =
-      "BQBbU7uAeBJRUcurvKCFFLiddV0Am_sqXoQKk1MHpDaLk-1KTpHIaG7bTR-76QP7BggMO2r9LuyShS0vDTeoGH0x-py81allVLyMYG23yFMGtak1S2GMz3RRTxy3kreVsKEXzrrGDxg0BiAsZWB9bcP2_yHhBiVCHKCKufBRkaG_UitQhzSM";
+      }/albums`;
 
     const myOptions = {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + accessToken
+        Authorization: "Bearer " + token
       },
       mode: "cors",
       cache: "no-cache"
@@ -23,25 +21,44 @@ export default function Albums(props) {
     fetch(FETCH_URL, myOptions)
       .then(response => response.json())
       .then(json => {
-        console.log(json);
 
         const info = !json.error ? json : null;
         setAlbums(info);
       });
   }, []);
 
-  console.log(albums);
-
   let albumsArr = [];
+  let coversArr = [];
+  let idArr = [];
 
   albums &&
     albums.items.map(album => {
-      !albumsArr.includes(album.name) && albumsArr.push(album.name);
+      if (!albumsArr.includes(album.name) && album.album_type === "album") {
+        albumsArr.push(album.name);
+        coversArr.push(album.images[0].url);
+        idArr.push(album.id);
+      }
     });
 
+  /*     albumsArr.push({
+        name: album.name,
+        cover: album.images[0].
+      }])
+   */
   return (
     <div>
-      <ul>{albumsArr && albumsArr.map(album => <li> {album} </li>)}</ul>
+      <ul>
+        {albumsArr && albumsArr.map((album, index) => <li key={album}>
+          <div>{album}</div>
+          <img
+            height="400"
+            width="400"
+            src={coversArr[index]}
+          />
+          <Tracklist id={idArr[index]} />
+        </li>)}
+      </ul>
+      <br/>>
     </div>
   );
 }
