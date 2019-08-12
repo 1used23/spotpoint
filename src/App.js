@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Search from "./Search";
-import Albums from './Albums'
+import Albums from "./Albums";
+import RelatedArtists from "./RelatedArtists";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -27,7 +28,7 @@ function App() {
       <Router>
         <Route path="/search/:query" component={Search} />
         <Route path="/albums/:id" component={Albums} />
-
+        <Route path="/related/:id" component={RelatedArtists} />
       </Router>
     </div>
   );

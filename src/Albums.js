@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import token from './token';
-import Tracklist from './Tracklist';
+import token from "./token";
+import Tracklist from "./Tracklist";
 
 export default function Albums(props) {
   const [albums, setAlbums] = useState();
   useEffect(() => {
     const FETCH_URL = `https://api.spotify.com/v1/artists/${
       props.match.params.id
-      }/albums`;
+    }/albums`;
 
     const myOptions = {
       method: "GET",
@@ -21,7 +21,6 @@ export default function Albums(props) {
     fetch(FETCH_URL, myOptions)
       .then(response => response.json())
       .then(json => {
-
         const info = !json.error ? json : null;
         setAlbums(info);
       });
@@ -49,15 +48,16 @@ export default function Albums(props) {
   return (
     <div>
       <ul>
-        {albumsArr && albumsArr.map((album, index) => <li key={album}>
-          <div>{album}</div>
-          <img
-            src={coversArr[index]}
-          />
-          <Tracklist id={idArr[index]} />
-        </li>)}
+        {albumsArr &&
+          albumsArr.map((album, index) => (
+            <li key={album}>
+              <h3>{album}</h3>
+              <img src={coversArr[index]} />
+              <Tracklist id={idArr[index]} />
+            </li>
+          ))}
       </ul>
-      <br />>
+      <br />
     </div>
   );
 }
