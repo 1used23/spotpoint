@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import token from "./token";
-import Tracklist from "./Tracklist";
-import  Fetch  from "./fetch";
+import token from "../token";
+import Tracklist from "../Tracklist/Tracklist";
+import Fetch from "../fetch";
 
 export default function Albums({ id }) {
   const [albums, setAlbums] = useState();
   const FETCH_URL = `https://api.spotify.com/v1/artists/${id}/albums`;
-  
+
   Fetch(FETCH_URL, token, setAlbums, id);
 
   let albumsArr = [];
@@ -30,7 +30,7 @@ export default function Albums({ id }) {
    */
   return (
     <div>
-      <ul>
+      <ul className="albums">
         {albumsArr &&
           albumsArr.map((album, index) => (
             <li key={album}>

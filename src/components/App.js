@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Search from "./Search";
-import RelatedArtists from "./RelatedArtists";
+import Search from "./Search/Search";
+import RelatedArtists from "./RelatedArtists/RelatedArtists";
 
 function App() {
   const [query, setQuery] = useState("");

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Albums from "./Albums";
-import RelatedArtists from "./RelatedArtists";
-import token from "./token";
-import Fetch from "./fetch";
+import Albums from "../Albums/Albums";
+import RelatedArtists from "../RelatedArtists/RelatedArtists";
+import token from "../token";
+import Fetch from "../fetch";
 
 export default function Search(props) {
   const [info, setInfo] = useState();
@@ -50,6 +50,7 @@ export default function Search(props) {
         ))}
       </ul>
       <button
+        className="albums"
         onClick={e => {
           setShowAlbums(!showAlbums);
         }}
@@ -58,6 +59,7 @@ export default function Search(props) {
       </button>
 
       <button
+        className="related"
         onClick={e => {
           setShowRelated(!showRelated);
         }}
