@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Search from "./Search";
-import Albums from "./Albums";
 import RelatedArtists from "./RelatedArtists";
 
 function App() {
@@ -18,16 +17,13 @@ function App() {
           placeholder="Search for..."
           className="input"
         />
-
-        <a className="btn" href={query && `/search/${query}`}>
-          Go!
-        </a>
       </div>
 
-      {/*   похожих артистов?    */}
       <Router>
+        <Link className="btn" to={`/search/${query}`}>
+          Go!
+        </Link>
         <Route path="/search/:query" component={Search} />
-        <Route path="/albums/:id" component={Albums} />
         <Route path="/related/:id" component={RelatedArtists} />
       </Router>
     </div>

@@ -21,7 +21,7 @@ export default function Tracklist({ id }) {
         const tracks = !json.error ? json.items : null;
         setTracks(tracks);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div>

@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import token from "./token";
 import Tracklist from "./Tracklist";
 
-export default function Albums(props) {
+export default function Albums({ id }) {
   const [albums, setAlbums] = useState();
   useEffect(() => {
-    const FETCH_URL = `https://api.spotify.com/v1/artists/${
-      props.match.params.id
-    }/albums`;
+    const FETCH_URL = `https://api.spotify.com/v1/artists/${id}/albums`;
 
     const myOptions = {
       method: "GET",
@@ -24,7 +22,7 @@ export default function Albums(props) {
         const info = !json.error ? json : null;
         setAlbums(info);
       });
-  }, []);
+  }, [id]);
 
   let albumsArr = [];
   let coversArr = [];

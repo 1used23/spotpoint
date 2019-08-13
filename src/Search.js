@@ -27,11 +27,11 @@ export default function Search(props) {
         const info = !json.error ? json.artists.items[0] : null;
         setInfo(info);
       });
-  }, []);
+  }, [props.match.params.query]);
 
   const idArtist = info && info.id;
-
-  return (
+  let showAlbums = false;
+  return info ? (
     <div>
       <img src={info && info.images[0].url} />
 
@@ -41,18 +41,22 @@ export default function Search(props) {
       <div> {info && "Followers:" + info.followers.total} </div>
       <div> {info && "Popularity level: " + info.popularity} </div>
       <ul> {info && info.genres.map(genre => <li key={genre}>{genre}</li>)}</ul>
+      {showAlbums && <Albums id={idArtist} />}
       <Router>
         {info && (
-          <Link to={`/albums/${idArtist}`} target="_blank">{`${
-            info.name
-          } Albums`}</Link>
+          <Link
+            onClick={e => {
+              //СПРЯТАТЬ ПОД СПОЙЛЕР
+              showAlbums = true;
+              console.log(showAlbums);
+            }}
+          >{`${info.name} Albums`}</Link>
         )}
-        <Link to={`/related/${idArtist}`} target="_blank">
-          RelatedArtists
-        </Link>
-        <Route path="/albums/:id" component={Albums} />
+        <Link to={`/related/${idArtist}`}>RelatedArtists</Link>
         <Route path="/related/:id" component={RelatedArtists} />
       </Router>
     </div>
+  ) : (
+    "Какая-то ошибка ¯\\_(ツ)_/¯"
   );
 }
