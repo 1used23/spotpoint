@@ -1,28 +1,13 @@
 import React, { useState, useEffect } from "react";
 import token from "./token";
 import Tracklist from "./Tracklist";
+import  Fetch  from "./fetch";
 
 export default function Albums({ id }) {
   const [albums, setAlbums] = useState();
-  useEffect(() => {
-    const FETCH_URL = `https://api.spotify.com/v1/artists/${id}/albums`;
-
-    const myOptions = {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + token
-      },
-      mode: "cors",
-      cache: "no-cache"
-    };
-
-    fetch(FETCH_URL, myOptions)
-      .then(response => response.json())
-      .then(json => {
-        const info = !json.error ? json : null;
-        setAlbums(info);
-      });
-  }, [id]);
+  const FETCH_URL = `https://api.spotify.com/v1/artists/${id}/albums`;
+  
+  Fetch(FETCH_URL, token, setAlbums, id);
 
   let albumsArr = [];
   let coversArr = [];

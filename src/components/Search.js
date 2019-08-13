@@ -3,9 +3,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Albums from "./Albums";
 import RelatedArtists from "./RelatedArtists";
 import token from "./token";
+import Fetch from "./fetch";
 
 export default function Search(props) {
   const [info, setInfo] = useState();
+  const [showAlbums, setShowAlbums] = useState(false);
+  const [showRelated, setShowRelated] = useState(false);
 
   useEffect(() => {
     const FETCH_URL = `https://api.spotify.com/v1/search?q=${
@@ -29,32 +32,40 @@ export default function Search(props) {
       });
   }, [props.match.params.query]);
 
+  Fetch();
+
   const idArtist = info && info.id;
-  let showAlbums = false;
   return info ? (
     <div>
-      <img src={info && info.images[0].url} />
+      <img src={info.images[0].url} />
 
-      <a href={info && info.external_urls.spotify}>
-        <h2> {info && info.name} </h2>
+      <a href={info.external_urls.spotify}>
+        <h2> {info.name} </h2>
       </a>
-      <div> {info && "Followers:" + info.followers.total} </div>
-      <div> {info && "Popularity level: " + info.popularity} </div>
-      <ul> {info && info.genres.map(genre => <li key={genre}>{genre}</li>)}</ul>
+      <div> {"Followers:" + info.followers.total} </div>
+      <div> {"Popularity level: " + info.popularity} </div>
+      <ul>
+        {info.genres.map(genre => (
+          <li key={genre}>{genre}</li>
+        ))}
+      </ul>
+      <button
+        onClick={e => {
+          setShowAlbums(!showAlbums);
+        }}
+      >
+        Show Albums
+      </button>
+
+      <button
+        onClick={e => {
+          setShowRelated(!showRelated);
+        }}
+      >
+        Show Related Artists
+      </button>
       {showAlbums && <Albums id={idArtist} />}
-      <Router>
-        {info && (
-          <Link
-            onClick={e => {
-              //СПРЯТАТЬ ПОД СПОЙЛЕР
-              showAlbums = true;
-              console.log(showAlbums);
-            }}
-          >{`${info.name} Albums`}</Link>
-        )}
-        <Link to={`/related/${idArtist}`}>RelatedArtists</Link>
-        <Route path="/related/:id" component={RelatedArtists} />
-      </Router>
+      {showRelated && <RelatedArtists id={idArtist} />}
     </div>
   ) : (
     "Какая-то ошибка ¯\\_(ツ)_/¯"
